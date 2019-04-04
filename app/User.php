@@ -42,4 +42,14 @@ class User extends Authenticatable
 
     const STATUS_ACTIVE_TEXT = "Enabled";
     const STATUS_INACTIVE_TEXT = "Disabled";
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, "country_id", "id");
+    }
 }

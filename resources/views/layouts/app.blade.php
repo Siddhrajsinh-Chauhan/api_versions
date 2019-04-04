@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.3.1.js') }}" type="text/javascript"></script>
 
-    @if(in_array(Route::currentRouteName(), ['users']))
+    @if(in_array(Route::currentRouteName(), ['users', 'posts']))
         <script src="{{ asset('js/datatable/jquery.dataTables.min.js') }}" defer></script>
         <script src="{{ asset('js/datatable/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
     @endif
@@ -24,7 +24,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @if(in_array(Route::currentRouteName(), ['users']))
+    @if(in_array(Route::currentRouteName(), ['users', 'posts']))
         <link href="{{ asset('css/datatable/bootstrap.min.css') }}" >
         <link href="{{ asset('css/datatable/dataTables.bootstrap.min.css') }}" >
     @endif
@@ -46,6 +46,9 @@
                         @auth
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('posts') }}">{{ __('Post') }}</a>
                             </li>
                         @endauth
                     </ul>

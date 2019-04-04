@@ -40,7 +40,7 @@ class LoginController extends BaseController
             ]);
 
             if ($validator->fails()) {
-                throw new Exception(implode(",", $validator->errors()->all()), BAD_REQUEST);
+                throw new Exception(explode(",", $validator->errors()->all()), BAD_REQUEST);
             }
 
             if (!Auth::guard()->attempt(['email' => $request->email, 'password' => $request->password])) {

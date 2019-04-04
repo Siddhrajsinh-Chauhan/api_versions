@@ -30,14 +30,14 @@ class LoginController extends \App\Http\Controllers\Api\v1\LoginController
             ]);
 
             if ($validator->fails()) {
-                throw new Exception(implode(",", $validator->errors()->all()), BAD_REQUEST);
+                throw new Exception(explode(",", $validator->errors()->all()), BAD_REQUEST);
             }
 
             if (!Auth::guard()->attempt(
                 [
                     'email' => $request->email,
-                    'password' => $request->password,
-                ]) ) {
+                    'password' => $request->password
+                ])) {
                 throw new Exception("Invalid user name or Password", BAD_REQUEST);
             }
 
