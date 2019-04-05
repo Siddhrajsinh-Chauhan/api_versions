@@ -34,3 +34,11 @@ Route::group(["prefix"=>"v2", "namespace" => "Api\\v2"], function() {
         Route::get('logout', 'LoginController@logout');
     });
 });
+
+Route::group(["prefix"=>"v3", "namespace" => "Api\\v3"], function() {
+	Route::post('login', 'LoginController@login');
+    Route::group(["middleware"=> ["apiAuth"]], function() {
+        Route::get('users', 'UserController@index');
+        Route::get('logout', 'LoginController@logout');
+    });
+});

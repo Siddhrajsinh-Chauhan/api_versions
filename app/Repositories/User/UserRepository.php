@@ -7,7 +7,7 @@ use App\User;
 
 class UserRepository implements UserInterface
 {
-    protected  $status = true;
+    protected $status = true;
 
     public function __construct()
     {
@@ -29,7 +29,8 @@ class UserRepository implements UserInterface
      * */
     public function getAllActiveUsers($selectParams = "*")
     {
-        return User::select($selectParams)->where("id", "!=", auth()->guard('api')->user()->id)->where('status', User::STATUS_ACTIVE)->get();
+        return User::with("posts")->select($selectParams)->where("id", "!=", auth()->guard('api')->user()->id)
+            ->where('status', User::STATUS_ACTIVE)->get();
     }
 
     /*

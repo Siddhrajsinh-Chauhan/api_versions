@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v2;
+namespace App\Http\Controllers\Api\v3;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\User\UserInterface as UserInterface;
 
-class LoginController extends \App\Http\Controllers\Api\v1\LoginController
+class LoginController extends \App\Http\Controllers\Api\v2\LoginController
 {
     public function __construct(UserInterface $user)
     {
@@ -55,7 +55,8 @@ class LoginController extends \App\Http\Controllers\Api\v1\LoginController
                 'api_token' => hash('sha256', $this->getApiToken()),
             ])->save();
 
-            return response()->json(['status' => true, 'data' => $user['user'], 'message' => "Login Successfully."]);
+            return response()->json(['status' => true, 'data' => $user['user']->toArray(),
+                'message' => "Login Successfully."]);
         } catch (Exception $e) {
             return response()->json(
                 [

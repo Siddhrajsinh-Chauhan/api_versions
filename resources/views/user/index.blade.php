@@ -21,7 +21,7 @@
                                 <th>Email</th>
                                 <th>Country</th>
                                 {{--<th>Total Post of Country</th>--}}
-                                <th>Action</th>
+                                <th class="no-sort">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -54,7 +54,12 @@
 
                         <script type="text/javascript">
                             jQuery(document).ready(function () {
-                                jQuery('#user-list').DataTable();
+                                jQuery('#user-list').DataTable({
+                                    "columnDefs": [ {
+                                        "targets": 'no-sort',
+                                        "orderable": false,
+                                    } ]
+                                });
                                 jQuery.ajaxSetup({
                                     headers: {
                                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')

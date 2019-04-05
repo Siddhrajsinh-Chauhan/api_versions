@@ -17,7 +17,7 @@
                                 <th width="10%">id</th>
                                 <th width="30%">Title</th>
                                 <th width="30%">Created By</th>
-                                <th width="30%" >Action</th>
+                                <th width="30%" class="no-sort" >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,12 @@
 
                     <script type="text/javascript">
                         jQuery(document).ready(function() {
-                            jQuery('#post-list').DataTable();
+                            jQuery('#post-list').DataTable({
+                                    "columnDefs": [ {
+                                        "targets": 'no-sort',
+                                        "orderable": false,
+                                    } ]
+                                });
                             jQuery.ajaxSetup({
                                 headers: {
                                   'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
