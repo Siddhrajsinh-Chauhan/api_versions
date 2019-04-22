@@ -20,7 +20,9 @@ class PostRepository implements PostInterface
      * */
     public function getAll($params = "*", $flag = true)
     {
-        return Post::select($params)->get();
+        return Post::with(['user' => function ($query) {
+            $query->select("id", "name");
+        }])->select($params)->get();
     }
 
     /*
